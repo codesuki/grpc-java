@@ -118,7 +118,7 @@ def java_grpc_library(name, srcs, deps, flavor=None,
     ]
   elif flavor == "lite":
     added_deps += [
-        "@com_google_protobuf_javalite//:protobuf_java_lite",
+        "@com_google_protobuf_java_lite//:protobuf_java_lite",
         "@grpc_java//protobuf-lite:protobuf_lite",
     ]
   else:
