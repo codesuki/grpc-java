@@ -58,7 +58,7 @@ _gensource = rule(
             cfg = "host",
         ),
         "_java_plugin": attr.label(
-            default = Label("@grpc_java//compiler:grpc_java_plugin"),
+            default = Label("//compiler:grpc_java_plugin"),
             executable = True,
             cfg = "host",
         ),
@@ -107,20 +107,15 @@ def java_grpc_library(name, srcs, deps, flavor=None,
   )
 
   added_deps = [
-      "@grpc_java//core",
-      "@grpc_java//stub",
+      "//core",
+      "//stub",
+      "//protobuf",
       "@com_google_guava_guava//jar",
   ]
   if flavor == "normal":
-    added_deps += [
-        "@com_google_protobuf//:protobuf_java",
-        "@grpc_java//protobuf",
-    ]
+    added_deps += ["@com_google_protobuf//:protobuf_java"]
   elif flavor == "lite":
-    added_deps += [
-        "@com_google_protobuf_javalite//:protobuf_java_lite",
-        "@grpc_java//protobuf-lite:protobuf_lite",
-    ]
+    added_deps += ["@com_google_protobuf_java_lite//:protobuf_java_lite"]
   else:
     fail("Unknown flavor type", "flavor")
 
